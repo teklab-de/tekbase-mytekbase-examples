@@ -10,6 +10,6 @@ Copy the mytekbase directory into your TekBASE.
 
 ### Game server extensions
 Then give the xxx directory the name of the game shortcut. For the game Minecraft this would be "minecraft". View the game list in the admin panel.
-
+  
 ## License
 Copyright (c) TekLab.de. Code released under the [GPL v3.0 License](http://https://gitgem.com/TekLab/tekbase-mytekbase-examples/src/branch/master/LICENSE).
