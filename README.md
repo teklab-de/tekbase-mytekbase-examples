@@ -6,10 +6,10 @@ Some examples for own extensions, widgets and modules.
 * dbcreate_module - Create a database for this game.
 
 ## Installation
-Copy the mytekbase directory into your TekBASE. 
+Copy the "mytekbase" directory into your TekBASE. 
 
 ### Game server extensions
-Then give the xxx directory the name of the game shortcut. For the game Minecraft this would be "minecraft". View the game list in the admin panel. You can use symlinks for other games. Then you only need to insert the files once.
+Then give the "xxx" directory the name of the game shortcut. For the game Minecraft this would be "minecraft". View the game list in the admin panel. You can use symlinks for other games. Then you only need to insert the files once.
   
 ## License
 Copyright (c) TekLab.de. Code released under the [GPL v3.0 License](http://https://gitgem.com/TekLab/tekbase-mytekbase-examples/src/branch/master/LICENSE).
