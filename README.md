@@ -1,7 +1,7 @@
 # TekBASE - Mytekbase examples
 ![TekBASE 8.X](https://img.shields.io/badge/TekBASE-8.X-green.svg) ![License GPL v3.0](https://img.shields.io/badge/License-GPL_v3.0-blue.svg)
 
-Some examples for own game server extensions. 
+Some examples for own extensions, widgets and modules. 
 
 * dbcreate_module - Create a database for this game.
 
