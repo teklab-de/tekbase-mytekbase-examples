@@ -1,8 +1,8 @@
 <?php
 
 if (preg_match("/dbcreate_module.php/i", $_SERVER['PHP_SELF'])) { 
-    Header("Location: ../../../../../index.php");
-	die();
+    header('HTTP/1.0 403 Forbidden');
+    die();
 }
 
 $logyear = strftime("%Y", time());
@@ -43,8 +43,7 @@ if ($urow == 0) {
 		include ("members/header.php");
 		$membertitle = _GSERVER.'&nbsp;-&nbsp;'.$options[serverip].':'.$options[serverport].'';
 		$membermsg = member_title("gserver", $membertitle, _ASSISTENTGSERVER, "");
-		echo ''.$membermsg.'
-			  '.$membermsgtwo.'';
+		echo $membermsg.$membermsgtwo;
 		include ("members/footer.php");				  
 	}
 }else{
