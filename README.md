@@ -12,4 +12,4 @@ Copy the "mytekbase" directory into your TekBASE.
 Then give the "xxx" directory the name of the game shortcut. For the game Minecraft this would be "minecraft". View the game list in the admin panel. You can use symlinks for other games. Then you only need to insert the files once.
   
 ## License
-Copyright (c) TekLab.de. Code released under the [GPL v3.0 License](http://https://gitgem.com/TekLab/tekbase-mytekbase-examples/src/branch/master/LICENSE).
+Copyright (c) TekLab.de. Code released under the [GPL v3.0 License](http://https://gitgem.com/TekLab/tekbase-mytekbase-examples/src/branch/master/LICENSE). The use by other commercial control panel providers is explicitly prohibited.
