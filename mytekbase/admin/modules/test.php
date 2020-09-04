@@ -1,8 +1,8 @@
 <?php
 
 if (preg_match("/admingroups.php/i", $_SERVER['PHP_SELF'])) { 
-    header('HTTP/1.0 403 Forbidden');
-    die();
+	header('HTTP/1.0 403 Forbidden');
+	die();
 }
 
 $min_version = "8000"; // Define from which version the module is available
@@ -16,21 +16,20 @@ if (file_exists("mytekbase/admin/languages/$admin[4]/test.php")) {
 
 $agstats = $db->sql_fetchrow($db->sql_query("SELECT * FROM ".$prefix."_admin_access WHERE groupid='$admin[5]' AND module='admingroups'"));
 if ($agstats AND $agstats[modview] != 1 AND $agstats[modnew] != 1 AND $agstats[modchange] != 1 AND $agstats[moddelete] == 1) {
-  adminLogin($admin);
+	adminLogin($admin);
 }
 
 function adminTest($ids, $xxxx, $chkhash, $chkhkey, $save) {
-  global $prefix, $db, $zahl, $torder, $tcounter, $admin, $wioption, $agstats, $panelactions;
+	global $prefix, $db, $zahl, $torder, $tcounter, $admin, $wioption, $agstats, $panelactions;
 
-
-  // filter(A, B, C, D, E);
-  // A = Variable
-  // B = "" or "nohtml"; nohtml = remove html code
-  // C = Scan and replace variable; 1 = yes
-  // D = Maximum character length
-  // E = "" or "num"; num = only digits;
+	// filter(A, B, C, D, E);
+	// A = Variable
+	// B = "" or "nohtml"; nohtml = remove html code
+	// C = Scan and replace variable; 1 = yes
+	// D = Maximum character length
+	// E = "" or "num"; num = only digits;
   
-  $ids      = filter($ids, "", 1, 20, "num");
+	$ids      = filter($ids, "", 1, 20, "num");
 	$zahl     = filter($zahl, "", 1, 20, "num");
 	$torder		= filter($torder, "", 1, 5);
 	$tcounter	= filter($tcounter, "", 1, 5, "num");
@@ -43,28 +42,28 @@ function adminTest($ids, $xxxx, $chkhash, $chkhkey, $save) {
 
 		$xxxx = filter($xxxx, "", 1, 30);
 
-    // Check if required fields are empty.
+    	// Check if required fields are empty.
 		if (!$xxxx) {
-      // administrator = Icon name (see admin panel -> widgets)
+      		// administrator = Icon name (see admin panel -> widgets)
 			admin_error(_TEST, _ASSISTENTTEST, "administrator", _NOTALLFIELDS, 1);
 		}
 	}
 
 	if ($save == 1) {
 		if ($agstats[modchange] == 1) {
-		  $logtitle = "LOGUP";
-		  $logtext = $xxxx;
-		  $urow = $db->sql_numrows($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE xxxx='$xxxx' AND id!='$ids'"));
-		  if ($urow > 0) {
-			  admin_error(_TEST, _ASSISTENTTEST, "administrator", _DBNAMEEXIST, 1);
-		  }
-      $result = $db->sql_query("UPDATE ".$prefix."_tablexyz SET xxxx='$xxxx' WHERE id='$ids'");
-      if (!$result) {
-        $lang_var = str_replace("%var%", _TESTTHESINGULAR." "._TESTSINGULAR, _DBUPERROR);
-        admin_error(_TEST, _ASSISTENTTEST, "administrator", $lang_var, 1);
-      }else{
-        $dbcode = "ok_00001";
-      }
+			$logtitle = "LOGUP";
+			$logtext = $xxxx;
+			$urow = $db->sql_numrows($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE xxxx='$xxxx' AND id!='$ids'"));
+			if ($urow > 0) {
+				admin_error(_TEST, _ASSISTENTTEST, "administrator", _DBNAMEEXIST, 1);
+			}
+      		$result = $db->sql_query("UPDATE ".$prefix."_tablexyz SET xxxx='$xxxx' WHERE id='$ids'");
+      		if (!$result) {
+        		$lang_var = str_replace("%var%", _TESTTHESINGULAR." "._TESTSINGULAR, _DBUPERROR);
+        		admin_error(_TEST, _ASSISTENTTEST, "administrator", $lang_var, 1);
+      		}else{
+        		$dbcode = "ok_00001";
+      		}
 		}else{
 			admin_error(_TEST, _ASSISTENTTEST, "lock", _ACCESSDENIED);
 		}
@@ -72,19 +71,19 @@ function adminTest($ids, $xxxx, $chkhash, $chkhkey, $save) {
 
 	if ($save == 2) {
 		if ($agstats[modnew] == 1) {
-		  $logtitle = "LOGNEW";
-		  $logtext = $title;
-		  $urow = $db->sql_numrows($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE xxxx='$xxxx'"));
-		  if ($urow > 0) {
-			  admin_error(_TEST, _ASSISTENTTEST, "administrator", _DBNAMEEXIST, 1);
-		  }
-		  $result = $db->sql_query("INSERT INTO ".$prefix."_admin_groups (id, title) VALUES (NULL, '$title')");
-		  if (!$result) {
-			  $lang_var = str_replace("%var%", _TESTTHESINGULAR." "._TESTSINGULAR, _DBSAVEERROR);
-			  admin_error(_TEST, _ASSISTENTTEST, "administrator", $lang_var, 1);
-		  }else{
-			  $dbcode = "ok_00002";
-		  }
+			$logtitle = "LOGNEW";
+			$logtext = $title;
+			$urow = $db->sql_numrows($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE xxxx='$xxxx'"));
+			if ($urow > 0) {
+				admin_error(_TEST, _ASSISTENTTEST, "administrator", _DBNAMEEXIST, 1);
+			}
+			$result = $db->sql_query("INSERT INTO ".$prefix."_admin_groups (id, title) VALUES (NULL, '$title')");
+			if (!$result) {
+				$lang_var = str_replace("%var%", _TESTTHESINGULAR." "._TESTSINGULAR, _DBSAVEERROR);
+				admin_error(_TEST, _ASSISTENTTEST, "administrator", $lang_var, 1);
+			}else{
+				$dbcode = "ok_00002";
+			}
 		}else{
 			admin_error(_TEST, _ASSISTENTTEST, "lock", _ACCESSDENIED);
 		}
@@ -118,7 +117,7 @@ function adminTest($ids, $xxxx, $chkhash, $chkhkey, $save) {
 		$check_iconlist = 1;		
 	}
 
-  // Links to other modules
+  	// Links to other modules
 	$adminicons = admin_moduleicons("admins", _ADMIN, "administrator", "adminAdmin", $check_iconlist);
 	if ($adminicons != "") { $check_iconlist = 1; }
 
@@ -222,9 +221,9 @@ function adminTest($ids, $xxxx, $chkhash, $chkhkey, $save) {
 
 
 function adminTestChange($boxid, $setstatus, $chkhash, $chkhkey) {
-  global $prefix, $db, $zahl, $torder, $tcounter, $admin, $agstats, $panelactions;
+	global $prefix, $db, $zahl, $torder, $tcounter, $admin, $agstats, $panelactions;
 
-	$zahl     = filter($zahl, "", 1, 20, "num");
+	$zahl		= filter($zahl, "", 1, 20, "num");
 	$torder		= filter($torder, "", 1, 5);
 	$tcounter	= filter($tcounter, "", 1, 5, "num");
 
@@ -255,11 +254,11 @@ function adminTestChange($boxid, $setstatus, $chkhash, $chkhkey) {
 	
 	for ($i=0; $i<count($boxid); $i++) {
 		$ids = filter($boxid[$i], "", 1, 20, "num");
-   	$teststats = $db->sql_fetchrow($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE id='$ids'"));
+   		$teststats = $db->sql_fetchrow($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE id='$ids'"));
 		$logtitle = "LOGDEL";
 		$logtext = $teststats[title];
 
-    if ($a == 0) {
+		if ($a == 0) {
 			echo '<li class="datarowa"><dl>';
 			$a = 1;
 		}else{
@@ -272,7 +271,7 @@ function adminTestChange($boxid, $setstatus, $chkhash, $chkhkey) {
 		$result = $db->sql_query("DELETE FROM ".$prefix."_admin_groups WHERE id='$ids'");
 		if ($result) {
 			$lang_var = str_replace("%var%", _TESTTHESINGULAR." "._TESTSINGULAR, _DBDELETED);
-      $panelactions->log_create($admin[1], 'TEST', $logtitle, $logtext, 2, 0);
+      		$panelactions->log_create($admin[1], 'TEST', $logtitle, $logtext, 2, 0);
 			echo '<font class="okfont">'.$lang_var.'</font>';
 		}else{
 			$lang_var = str_replace("%var%", _TESTTHESINGULAR." "._TESTSINGULAR, _DBDELERROR);
@@ -290,43 +289,43 @@ function adminTestChange($boxid, $setstatus, $chkhash, $chkhkey) {
 
 
 function adminTestEdit($ids) {
-  global $prefix, $db, $admin, $zahl, $torder, $tcounter, $agstats;
+	global $prefix, $db, $admin, $zahl, $torder, $tcounter, $agstats;
 
-  if (($ids > 0 AND $agstats[modchange] != 1) OR ($ids < 1 AND $agstats[modnew] != 1)) {
+	if (($ids > 0 AND $agstats[modchange] != 1) OR ($ids < 1 AND $agstats[modnew] != 1)) {
 		admin_error(_TEST, _ASSISTENTTEST, "lock", _ACCESSDENIED);
 	}
 
-	$ids      = filter($ids, "", 1, 20, "num");
-	$zahl     = filter($zahl, "", 1, 20, "num");
+	$ids		= filter($ids, "", 1, 20, "num");
+	$zahl		= filter($zahl, "", 1, 20, "num");
 	$torder		= filter($torder, "", 1, 5);
 	$tcounter	= filter($tcounter, "", 1, 5, "num");
 
 	$hkey		= $admin[6];
 	$hash		= md5("$admin[0]-$admin[1]-$admin[6]");
 
-  include("admin/header.php");
+	include("admin/header.php");
 	admin_title("administrator", _TEST, _ASSISTENTTEST, "");
 	echo '<table cellspacing="0" cellpadding="0" class="inputtable">
           <form name="form_one" action="admin.php" method="post">';
 
 	if ($ids > 0) {
-    $teststats = $db->sql_fetchrow($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE id='$ids'"));
-    echo '<input type="hidden" name="save" value="1">'; // UPDATE
+    	$teststats = $db->sql_fetchrow($db->sql_query("SELECT * FROM ".$prefix."_tablexyz WHERE id='$ids'"));
+    	echo '<input type="hidden" name="save" value="1">'; // UPDATE
 	}else{
 		echo '<input type="hidden" name="save" value="2">'; // INSERT
 	}
 	
 	echo '<tr><td class="essential" style="width:220px;">'._TESTXXXX.'</td><td><input name="xxxx" type="text" class="inputfield" style="width:250px;" maxlength="30" value="'.$teststats[xxxx].'"></td></tr>
-			  <tr><td>'._TESTYYYY.'</td><td><input name="yyyy" type="text" class="inputfield" style="width:250px;" maxlength="30" value="'.$teststats[yyyy].'"></td></tr>
+		<tr><td>'._TESTYYYY.'</td><td><input name="yyyy" type="text" class="inputfield" style="width:250px;" maxlength="30" value="'.$teststats[yyyy].'"></td></tr>
         <tr><td></td><td>
-		      <input type="hidden" name="op" value="adminTest"><input type="hidden" name="ids" value="'.$ids.'"><input type="hidden" name="zahl" value="'.$zahl.'">
-		      <input type="hidden" name="torder" value="'.$torder.'"><input type="hidden" name="tcounter" value="'.$tcounter.'">
-		      <input type="hidden" name="chkhkey" value="'.$hkey.'"><input type="hidden" name="chkhash" value="'.$hash.'">
-		      <div class="dataspace"></div>
-		      <a href="javascript:document.form_one.submit();" class="button_form">'._SAVE.'</a>
+			<input type="hidden" name="op" value="adminTest"><input type="hidden" name="ids" value="'.$ids.'"><input type="hidden" name="zahl" value="'.$zahl.'">
+		    <input type="hidden" name="torder" value="'.$torder.'"><input type="hidden" name="tcounter" value="'.$tcounter.'">
+			<input type="hidden" name="chkhkey" value="'.$hkey.'"><input type="hidden" name="chkhash" value="'.$hash.'">
+		    <div class="dataspace"></div>
+		    <a href="javascript:document.form_one.submit();" class="button_form">'._SAVE.'</a>
         </td></tr>
-		  </form>
-		  </table>';
+		</form>
+		</table>';
     include("admin/footer.php");
 }
 
